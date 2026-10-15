@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 1: Środowisko pracy | Projektowanie aplikacji webowych</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/white.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/github.css">
+  <link rel="stylesheet" href="assets/course.css">
+</head>
+<body>
+<div class="course-footer">Projektowanie aplikacji webowych · Lab 1</div>
+<div class="reveal"><div class="slides">
+
+<!-- ===================== START ===================== -->
+<section>
+  <h1>Lab 1</h1>
+  <h3>Środowisko pracy</h3>
+  <p>terminal · Python · venv · pip · VS Code · git</p>
+  <p class="small">Projektowanie aplikacji webowych · SWPS 2026/27</p>
+</section>
+
+<section>
+  <h2>O czym jest ten przedmiot?</h2>
+  <div class="card">Przez semestr budujemy <strong>jedną aplikację webową</strong>: system rezerwacji konsultacji psychologicznych.</div>
+  <div class="card fragment">Równolegle tworzysz <strong>własny projekt</strong> na wybrany temat: to on jest oceniany (0–100 pkt, zaliczenie od 51).</div>
+  <div class="card fragment">7 labów online → konsultacje w pracowni → prezentacje projektów.</div>
+  <aside class="notes">Pokazać repozytorium materiałów i repozytorium z kodem (gałęzie lab-0X).</aside>
+</section>
+
+<section>
+  <h2>Mapa semestru</h2>
+  <table>
+    <tr><th>#</th><th>Temat</th></tr>
+    <tr><td>1</td><td><strong>Środowisko pracy</strong> ← dziś</td></tr>
+    <tr><td>2</td><td>Git i GitHub</td></tr>
+    <tr><td>3</td><td>Start z Django: modele, ORM, admin</td></tr>
+    <tr><td>4</td><td>Model domeny, admin, widoki, routing</td></tr>
+    <tr><td>5</td><td>HTML, CSS (Tailwind), szablony, formularz</td></tr>
+    <tr><td>6</td><td>REST API, OpenAPI, Swagger</td></tr>
+    <tr><td>7</td><td>Użytkownicy i bezpieczeństwo</td></tr>
+    <tr><td>8–9</td><td>Konsultacje i prezentacje projektów</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>Skrzynka z narzędziami</h2>
+  <table>
+    <tr><th>Narzędzie</th><th>Po co?</th><th>Analogia</th></tr>
+    <tr class="fragment"><td>Terminal</td><td>wydawanie poleceń komputerowi</td><td>rozmowa zamiast klikania</td></tr>
+    <tr class="fragment"><td>Python</td><td>język, w którym piszemy</td><td>język obcy</td></tr>
+    <tr class="fragment"><td>venv</td><td>osobne biblioteki dla projektu</td><td>osobne pudełko na każdy projekt</td></tr>
+    <tr class="fragment"><td>pip</td><td>instalowanie bibliotek</td><td>sklep z aplikacjami</td></tr>
+    <tr class="fragment"><td>VS Code</td><td>edytor kodu</td><td>Word dla programisty</td></tr>
+    <tr class="fragment"><td>git</td><td>historia zmian</td><td>„historia wersji” w Google Docs</td></tr>
+  </table>
+</section>
+
+<!-- ===================== CZĘŚĆ 1 ===================== -->
+<section>
+  <section data-background-color="#1f2a44">
+    <h2 style="color:white">Część 1</h2>
+    <h3 style="color:#cfc3ef">Terminal i Python</h3>
+  </section>
+
+  <section>
+    <h2>Otwieramy terminal</h2>
+    <div class="cols">
+      <div><span class="os win">🪟 Windows</span><p>Start → <strong>Terminal</strong><br>(PowerShell)</p></div>
+      <div><span class="os mac">🍎 macOS</span><p>Cmd + Spacja → <strong>Terminal</strong><br>(zsh)</p></div>
+    </div>
+    <div class="card fragment">W VS Code: <code>Ctrl + `</code> / <code>Cmd + `</code></div>
+  </section>
+
+  <section>
+    <h2>Pięć poleceń na start</h2>
+<pre><code class="language-bash" data-trim data-line-numbers="1|2|3|4|5|6-7">
+pwd              # gdzie jestem?
+ls               # co tu jest?
+cd Desktop       # wejdź do folderu
+cd ..            # poziom wyżej
+cd ~             # folder domowy
+mkdir projekty_www
+cd projekty_www
+</code></pre>
+    <p class="fragment small">⌨️ <strong>Tab</strong> uzupełnia nazwy · <strong>↑</strong> poprzednie polecenie · <strong>Ctrl + C</strong> przerwij</p>
+  </section>
+
+  <section>
+    <h2>Instalacja Pythona (3.12+)</h2>
+    <div class="cols">
+      <div>
+        <span class="os win">🪟 Windows</span>
+        <ol class="small">
+          <li>python.org/downloads</li>
+          <li>☑️ <strong>Add python.exe to PATH</strong></li>
+          <li>nowy terminal</li>
+          <li><code>python --version</code></li>
+        </ol>
+      </div>
+      <div>
+        <span class="os mac">🍎 macOS</span>
+        <ol class="small">
+          <li>python.org/downloads (.pkg)</li>
+          <li>Dalej, Dalej…</li>
+          <li>nowy terminal</li>
+          <li><code>python3 --version</code></li>
+        </ol>
+      </div>
+    </div>
+    <div class="card warn fragment small">🪟 <code>python</code> otwiera Microsoft Store? → Ustawienia → Aliasy wykonywania aplikacji → wyłącz python.exe</div>
+  </section>
+
+  <section>
+    <h2>Python interaktywnie</h2>
+<pre><code class="language-python" data-trim>
+>>> 2 + 2
+4
+>>> imie = "Ala"
+>>> print(f"Cześć, {imie}!")
+Cześć, Ala!
+>>> exit()
+</code></pre>
+    <div class="card check">✅ Punkt kontrolny 1: <code>python --version</code> → 3.12+</div>
+  </section>
+</section>
+
+<!-- ===================== CZĘŚĆ 2 ===================== -->
+<section>
+  <section data-background-color="#1f2a44">
+    <h2 style="color:white">Część 2</h2>
+    <h3 style="color:#cfc3ef">venv i pip</h3>
+  </section>
+
+  <section>
+    <h2>Po co środowisko wirtualne?</h2>
+    <div class="cols">
+      <div class="card">📦 <strong>Projekt A</strong><br>Django 6.1<br>rich 15</div>
+      <div class="card">📦 <strong>Projekt B</strong><br>Django 4.2<br>pandas</div>
+    </div>
+    <p class="fragment">Każdy projekt ma <strong>własne pudełko</strong> z bibliotekami → brak konfliktów.</p>
+    <p class="fragment"><strong>1 projekt = 1 folder = 1 <code>.venv</code></strong></p>
+  </section>
+
+  <section>
+    <h2>Tworzenie i aktywacja</h2>
+    <div class="cols">
+      <div>
+        <span class="os win">🪟 Windows</span>
+<pre><code class="language-powershell" data-trim>
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+</code></pre>
+      </div>
+      <div>
+        <span class="os mac">🍎 macOS</span>
+<pre><code class="language-bash" data-trim>
+python3 -m venv .venv
+source .venv/bin/activate
+</code></pre>
+      </div>
+    </div>
+    <p class="fragment">Widzisz <code>(.venv)</code> na początku linii? 🎉 Od teraz wszędzie <code>python</code>.</p>
+    <div class="card warn fragment small">🪟 „running scripts is disabled” → <code>Set-ExecutionPolicy -Scope CurrentUser RemoteSigned</code></div>
+  </section>
+
+  <section>
+    <h2>pip: instalujemy bibliotekę</h2>
+<pre><code class="language-bash" data-trim data-line-numbers="1|2|3|4">
+python -m pip install --upgrade pip
+pip install rich
+pip list
+pip freeze > requirements.txt
+</code></pre>
+    <div class="card fragment"><code>requirements.txt</code> = przepis na środowisko.<br>
+      Odtworzenie: <code>pip install -r requirements.txt</code></div>
+  </section>
+
+  <section>
+    <h2>Pierwszy skrypt: <code>hello.py</code></h2>
+<pre><code class="language-python" data-trim data-line-numbers="1-2|4-8|10-14">
+from rich.console import Console
+from rich.table import Table
+
+console = Console()
+table = Table(title="Nasi specjaliści (dane fikcyjne)")
+table.add_column("Imię")
+table.add_column("Nazwisko")
+table.add_column("Specjalizacja")
+
+table.add_row("Anna", "Nowak", "Terapia CBT")
+table.add_row("Piotr", "Wiśniewski", "Psychologia dziecięca")
+console.print(table)
+
+# pełna wersja w instrukcji 👉 labs/lab-01
+</code></pre>
+    <div class="card check small">✅ Punkt kontrolny 2: <code>python hello.py</code> wyświetla tabelę</div>
+  </section>
+
+  <section>
+    <h2>Szybki quiz 🤔</h2>
+    <p>Kolega pisze: <em>„No module named rich”</em>, choć instalował. Co sprawdzić?</p>
+    <p class="fragment">👉 Czy ma <strong>aktywne</strong> środowisko <code>(.venv)</code>?</p>
+    <p class="fragment">👉 Czy VS Code używa interpretera z <code>.venv</code>?</p>
+    <p class="fragment">Czy <code>.venv</code> wysyłamy do gita? <strong class="fragment">Nie! Tylko <code>requirements.txt</code></strong></p>
+  </section>
+</section>
+
+<!-- ===================== CZĘŚĆ 3 ===================== -->
+<section>
+  <section data-background-color="#1f2a44">
+    <h2 style="color:white">Część 3</h2>
+    <h3 style="color:#cfc3ef">VS Code i git</h3>
+  </section>
+
+  <section>
+    <h2>VS Code: konfiguracja</h2>
+    <ol>
+      <li class="fragment">Instalacja (🪟 ☑️ <em>Add to PATH</em>, 🍎 <em>Install 'code' command</em>)</li>
+      <li class="fragment">Rozszerzenie <strong>Python</strong> (Microsoft)</li>
+      <li class="fragment"><code>code .</code> w folderze projektu</li>
+      <li class="fragment"><code>Ctrl/Cmd + Shift + P</code> → <strong>Python: Select Interpreter</strong> → <code>.venv</code></li>
+      <li class="fragment">Terminal w VS Code + przycisk ▶</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Git: wehikuł czasu dla kodu</h2>
+    <div class="cols">
+      <div class="card fragment">📸 <strong>commit</strong><br>migawka projektu z opisem</div>
+      <div class="card fragment">🕰️ <strong>historia</strong><br>powrót do dowolnej migawki</div>
+      <div class="card fragment">☁️ <strong>GitHub</strong><br>kopia w chmurze (lab 2)</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Instalacja i konfiguracja</h2>
+    <div class="cols">
+      <div><span class="os win">🪟 Windows</span><p class="small">git-scm.com → Git for Windows<br>edytor: VS Code<br>gałąź domyślna: <code>main</code></p></div>
+      <div><span class="os mac">🍎 macOS</span><p class="small"><code>git --version</code><br>→ instalacja Command Line Tools</p></div>
+    </div>
+<pre class="fragment"><code class="language-bash" data-trim>
+git config --global user.name "Imię Nazwisko"
+git config --global user.email "twoj@email.pl"
+git config --global init.defaultBranch main
+git config --global core.editor "code --wait"
+git config --global core.autocrlf true    # 🪟  (🍎: input)
+</code></pre>
+  </section>
+
+  <section>
+    <h2>Trzy miejsca w gicie</h2>
+    <div class="cols" style="align-items:center">
+      <div class="card">📝 folder roboczy</div>
+      <div class="fragment" data-fragment-index="1"><code>git add</code> →</div>
+      <div class="card fragment" data-fragment-index="1">📋 poczekalnia</div>
+      <div class="fragment" data-fragment-index="2"><code>git commit</code> →</div>
+      <div class="card fragment" data-fragment-index="2">📸 historia</div>
+    </div>
+    <p class="fragment small" data-fragment-index="3"><code>git status</code> · <code>git diff</code> · <code>git log --oneline</code>: zawsze możesz zapytać, co się dzieje</p>
+  </section>
+
+  <section>
+    <h2>Pierwsze repozytorium</h2>
+<pre><code class="language-bash" data-trim data-line-numbers="1-2|3|4-5|6-7|8">
+git init
+git status                  # o nie, .venv!
+# tworzymy .gitignore z wpisem .venv/
+git add .gitignore
+git commit -m "Dodaj .gitignore"
+git add hello.py requirements.txt
+git commit -m "Dodaj skrypt powitalny i listę zależności"
+git log --oneline
+</code></pre>
+  </section>
+
+  <section>
+    <h2>Ćwiczenie: cykl zmiany</h2>
+    <ol>
+      <li>Dodaj specjalistę w <code>hello.py</code></li>
+      <li><code>git status</code> → <em>modified</em></li>
+      <li><code>git diff</code> → co dokładnie?</li>
+      <li><code>git add hello.py</code></li>
+      <li><code>git commit -m "Dodaj specjalistkę Ewę Lis"</code></li>
+    </ol>
+    <p class="fragment">To samo w VS Code: panel <strong>Source Control</strong> (<code>Ctrl/Cmd + Shift + G</code>)</p>
+  </section>
+</section>
+
+<!-- ===================== KONIEC ===================== -->
+<section>
+  <h2>Podsumowanie</h2>
+  <ul>
+    <li>✅ terminal: <code>pwd</code>, <code>ls</code>, <code>cd</code>, <code>mkdir</code></li>
+    <li>✅ Python 3.12+ i <code>.venv</code></li>
+    <li>✅ <code>pip</code> i <code>requirements.txt</code></li>
+    <li>✅ VS Code z interpreterem z <code>.venv</code></li>
+    <li>✅ git: <code>init</code>, <code>add</code>, <code>commit</code>, <code>log</code>, <code>.gitignore</code></li>
+  </ul>
+  <div class="card">📚 Zadania: <code>labs/lab-01/zadania.md</code> · Przed labem 2: konto na <strong>GitHub</strong></div>
+</section>
+
+</div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/highlight.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: 'c/t',
+    width: 1280,
+    height: 760,
+    plugins: [RevealHighlight, RevealNotes]
+  });
+</script>
+</body>
+</html>

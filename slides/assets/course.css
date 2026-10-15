@@ -1,0 +1,31 @@
+/* Wspólny styl slajdów kursu: dopasowanie do motywu "white" reveal.js */
+:root {
+  --r-main-font-size: 34px;
+  --r-heading-color: #1f2a44;
+  --r-link-color: #0b6bcb;
+  --accent: #6a3fb5;
+}
+
+.reveal h1, .reveal h2, .reveal h3 { text-transform: none; }
+.reveal h1 { color: var(--accent); }
+.reveal pre { width: 100%; font-size: 0.6em; box-shadow: none; }
+.reveal pre code { max-height: 560px; padding: 14px; border-radius: 8px; }
+.reveal code:not(pre code) { background: #f1f0f7; padding: 0 6px; border-radius: 4px; color: #4a2c8a; }
+.reveal table { font-size: 0.65em; }
+.reveal blockquote { width: 90%; font-size: 0.8em; background: #f6f4fb; border-left: 6px solid var(--accent); box-shadow: none; padding: 12px 20px; }
+.reveal small, .reveal .small { font-size: 0.6em; }
+
+/* dwie kolumny: Windows | macOS */
+.cols { display: flex; gap: 24px; align-items: flex-start; }
+.cols > div { flex: 1; min-width: 0; }
+.os { display: inline-block; font-size: 0.6em; font-weight: bold; padding: 2px 10px; border-radius: 12px; margin-bottom: 6px; }
+.os.win { background: #e0efff; color: #0b4f9c; }
+.os.mac { background: #ececec; color: #333; }
+
+/* karteczki */
+.card { background: #f6f4fb; border-radius: 12px; padding: 14px 20px; margin: 8px 0; text-align: left; font-size: 0.8em; }
+.check { background: #e8f7ec; border-left: 6px solid #2e9e4f; }
+.warn { background: #fff4e0; border-left: 6px solid #e39a12; }
+
+/* stopka z nazwą przedmiotu */
+.course-footer { position: fixed; bottom: 12px; left: 16px; font-size: 14px; color: #888; z-index: 10; }
