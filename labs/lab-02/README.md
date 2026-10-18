@@ -16,7 +16,7 @@ i przeprowadzić pełny cykl zmiany przez *pull request*, najpierw w terminalu, 
 **Wymagania:** ukończony [lab 1](../lab-01/README.md): folder `konsultacje` z repozytorium git i kilkoma commitami
 oraz konto na [GitHubie](https://github.com).
 
-> 📌 Polecenia gita są identyczne na 🪟 Windows i 🍎 macOS. Różnice dotyczą tylko logowania do GitHuba (punkt 2.3).
+> 📌 Polecenia gita są identyczne na 💻 Windows i 🍎 macOS. Różnice dotyczą tylko logowania do GitHuba (punkt 2.3).
 > **Wszystkie polecenia wpisuj w terminalu VS Code** (Ctrl + \` / Cmd + \`), w folderze `konsultacje`.
 
 ---
@@ -218,7 +218,7 @@ git push -u origin main
 
 **Logowanie przy pierwszym `push`:**
 
-🪟 **Windows:** otworzy się okno *Git Credential Manager* → **Sign in with your browser** → zaloguj się na GitHubie i zatwierdź.
+💻 **Windows:** otworzy się okno *Git Credential Manager* → **Sign in with your browser** → zaloguj się na GitHubie i zatwierdź.
 Dane zostaną zapamiętane w systemie.
 
 🍎 **macOS:** jeśli pracujesz w **terminalu VS Code**, VS Code zapyta: *„The extension 'GitHub' wants to sign in using GitHub”* → **Allow** →
@@ -294,7 +294,7 @@ Usuń kopię i wróć do projektu:
 
 ```bash
 cd ..
-# 🪟 Remove-Item -Recurse -Force konsultacje-kopia
+# 💻 Remove-Item -Recurse -Force konsultacje-kopia
 # 🍎 rm -rf konsultacje-kopia
 cd konsultacje
 ```

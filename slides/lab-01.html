@@ -68,8 +68,8 @@
   <section>
     <h2>Otwieramy terminal</h2>
     <div class="cols">
-      <div><span class="os win">🪟 Windows</span><p>Start → <strong>Terminal</strong><br>(PowerShell)</p></div>
-      <div><span class="os mac">🍎 macOS</span><p>Cmd + Spacja → <strong>Terminal</strong><br>(zsh)</p></div>
+      <div><span class="os win">Windows</span><p>Start → <strong>Terminal</strong><br>(PowerShell)</p></div>
+      <div><span class="os mac">macOS</span><p>Cmd + Spacja → <strong>Terminal</strong><br>(zsh)</p></div>
     </div>
     <div class="card fragment">W VS Code: <code>Ctrl + `</code> / <code>Cmd + `</code></div>
   </section>
@@ -92,7 +92,7 @@ cd projekty_www
     <h2>Instalacja Pythona (3.12+)</h2>
     <div class="cols">
       <div>
-        <span class="os win">🪟 Windows</span>
+        <span class="os win">Windows</span>
         <ol class="small">
           <li>python.org/downloads</li>
           <li>☑️ <strong>Add python.exe to PATH</strong></li>
@@ -101,7 +101,7 @@ cd projekty_www
         </ol>
       </div>
       <div>
-        <span class="os mac">🍎 macOS</span>
+        <span class="os mac">macOS</span>
         <ol class="small">
           <li>python.org/downloads (.pkg)</li>
           <li>Dalej, Dalej…</li>
@@ -110,7 +110,7 @@ cd projekty_www
         </ol>
       </div>
     </div>
-    <div class="card warn fragment small">🪟 <code>python</code> otwiera Microsoft Store? → Ustawienia → Aliasy wykonywania aplikacji → wyłącz python.exe</div>
+    <div class="card warn fragment small"><span class="os win">Windows</span> <code>python</code> otwiera Microsoft Store? → Ustawienia → Aliasy wykonywania aplikacji → wyłącz python.exe</div>
   </section>
 
   <section>
@@ -148,14 +148,14 @@ Cześć, Ala!
     <h2>Tworzenie i aktywacja</h2>
     <div class="cols">
       <div>
-        <span class="os win">🪟 Windows</span>
+        <span class="os win">Windows</span>
 <pre><code class="language-powershell" data-trim>
 python -m venv .venv
 .venv\Scripts\Activate.ps1
 </code></pre>
       </div>
       <div>
-        <span class="os mac">🍎 macOS</span>
+        <span class="os mac">macOS</span>
 <pre><code class="language-bash" data-trim>
 python3 -m venv .venv
 source .venv/bin/activate
@@ -163,7 +163,7 @@ source .venv/bin/activate
       </div>
     </div>
     <p class="fragment">Widzisz <code>(.venv)</code> na początku linii? 🎉 Od teraz wszędzie <code>python</code>.</p>
-    <div class="card warn fragment small">🪟 „running scripts is disabled” → <code>Set-ExecutionPolicy -Scope CurrentUser RemoteSigned</code></div>
+    <div class="card warn fragment small"><span class="os win">Windows</span> „running scripts is disabled” → <code>Set-ExecutionPolicy -Scope CurrentUser RemoteSigned</code></div>
   </section>
 
   <section>
@@ -218,7 +218,7 @@ console.print(table)
   <section>
     <h2>VS Code: konfiguracja</h2>
     <ol>
-      <li class="fragment">Instalacja (🪟 ☑️ <em>Add to PATH</em>, 🍎 <em>Install 'code' command</em>)</li>
+      <li class="fragment">Instalacja (<span class="os win">Windows</span> ☑️ <em>Add to PATH</em>, <span class="os mac">macOS</span> <em>Install 'code' command</em>)</li>
       <li class="fragment">Rozszerzenie <strong>Python</strong> (Microsoft)</li>
       <li class="fragment"><code>code .</code> w folderze projektu</li>
       <li class="fragment"><code>Ctrl/Cmd + Shift + P</code> → <strong>Python: Select Interpreter</strong> → <code>.venv</code></li>
@@ -238,15 +238,15 @@ console.print(table)
   <section>
     <h2>Instalacja i konfiguracja</h2>
     <div class="cols">
-      <div><span class="os win">🪟 Windows</span><p class="small">git-scm.com → Git for Windows<br>edytor: VS Code<br>gałąź domyślna: <code>main</code></p></div>
-      <div><span class="os mac">🍎 macOS</span><p class="small"><code>git --version</code><br>→ instalacja Command Line Tools</p></div>
+      <div><span class="os win">Windows</span><p class="small">git-scm.com → Git for Windows<br>edytor: VS Code<br>gałąź domyślna: <code>main</code></p></div>
+      <div><span class="os mac">macOS</span><p class="small"><code>git --version</code><br>→ instalacja Command Line Tools</p></div>
     </div>
 <pre class="fragment"><code class="language-bash" data-trim>
 git config --global user.name "Imię Nazwisko"
 git config --global user.email "twoj@email.pl"
 git config --global init.defaultBranch main
 git config --global core.editor "code --wait"
-git config --global core.autocrlf true    # 🪟  (🍎: input)
+git config --global core.autocrlf true    # 💻 Windows (🍎 macOS: input)
 </code></pre>
   </section>
 

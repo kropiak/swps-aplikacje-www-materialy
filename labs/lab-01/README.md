@@ -14,7 +14,7 @@ terminal, Python ze środowiskiem wirtualnym, VS Code i git. Masz też pierwszy 
 | 3 | 45 min | VS Code, instalacja i konfiguracja gita, pierwsze commity |
 
 > 📌 W instrukcji polecenia dla obu systemów są oznaczone tak:
-> 🪟 **Windows** (PowerShell) · 🍎 **macOS** (zsh)
+> 💻 **Windows** (PowerShell) · 🍎 **macOS** (zsh)
 > Jeśli przy poleceniu nie ma oznaczenia, działa tak samo na obu systemach.
 
 ---
@@ -29,7 +29,7 @@ Nic nie zepsujesz, jeśli będziesz uważnie czytać, co wpisujesz 🙂
 
 Otwórz terminal:
 
-- 🪟 menu Start → wpisz **Terminal** (lub **PowerShell**) → Enter
+- 💻 menu Start → wpisz **Terminal** (lub **PowerShell**) → Enter
 - 🍎 **Cmd + Spacja** → wpisz **Terminal** → Enter
 
 ### 1.2. Pierwsze polecenia
@@ -63,7 +63,7 @@ Pełna tabela poleceń dla obu systemów jest w [ściągawce terminala](../../sc
 
 Potrzebujemy **Pythona 3.12 lub nowszego** (zalecany 3.13 albo 3.14). Najpierw sprawdź, czy już go masz:
 
-🪟 Windows:
+💻 Windows:
 ```powershell
 python --version
 ```
@@ -75,7 +75,7 @@ python3 --version
 
 Jeśli widzisz `Python 3.12.x` lub nowszy, przejdź do punktu 1.4. W przeciwnym razie zainstaluj Pythona:
 
-🪟 **Windows**
+💻 **Windows**
 1. Wejdź na https://www.python.org/downloads/ i pobierz aktualną wersję dla Windows.
 2. Uruchom instalator. Jeśli zobaczysz opcję **„Add python.exe to PATH”**, **zaznacz ją** (to najważniejszy krok!).
 3. Po instalacji **zamknij wszystkie okna terminala** i otwórz nowe.
@@ -94,7 +94,7 @@ Jeśli widzisz `Python 3.12.x` lub nowszy, przejdź do punktu 1.4. W przeciwnym 
 ### 1.4. Python w trybie interaktywnym
 
 ```bash
-python      # 🪟
+python      # 💻
 python3     # 🍎
 ```
 
@@ -107,7 +107,7 @@ Pojawi się znak zachęty `>>>`. Wpisz:
 >>> exit()
 ```
 
-✅ **Punkt kontrolny 1:** masz folder `projekty_www`, a `python --version` (🪟) lub `python3 --version` (🍎) pokazuje wersję 3.12+.
+✅ **Punkt kontrolny 1:** masz folder `projekty_www`, a `python --version` (💻) lub `python3 --version` (🍎) pokazuje wersję 3.12+.
 
 ---
 
@@ -133,12 +133,12 @@ cd konsultacje
 
 Utwórz środowisko wirtualne:
 
-🪟 `python -m venv .venv`
+💻 `python -m venv .venv`
 🍎 `python3 -m venv .venv`
 
 Aktywuj je:
 
-🪟 Windows:
+💻 Windows:
 ```powershell
 .venv\Scripts\Activate.ps1
 ```
@@ -238,7 +238,7 @@ Dzięki temu plikowi każdy (np. Ty na innym komputerze) odtworzy środowisko je
 ### 3.1. Instalacja i konfiguracja VS Code
 
 1. Pobierz i zainstaluj VS Code: https://code.visualstudio.com/
-   - 🪟 w instalatorze zaznacz **„Add to PATH”** i **„Open with Code”** (menu kontekstowe).
+   - 💻 w instalatorze zaznacz **„Add to PATH”** i **„Open with Code”** (menu kontekstowe).
    - 🍎 przeciągnij aplikację do folderu **Programy (Applications)**, uruchom ją i wykonaj
      **Cmd + Shift + P** → `Shell Command: Install 'code' command in PATH`.
 2. Zainstaluj rozszerzenia (ikona klocków po lewej, **Ctrl/Cmd + Shift + X**):
@@ -247,7 +247,7 @@ Dzięki temu plikowi każdy (np. Ty na innym komputerze) odtworzy środowisko je
 3. Otwórz projekt: w terminalu w folderze `konsultacje` wpisz `code .`
    (albo w VS Code: *File → Open Folder…*).
 4. Wskaż interpreter z naszego środowiska: **Ctrl/Cmd + Shift + P** → `Python: Select Interpreter` → wybierz pozycję z `.venv`.
-5. Otwórz terminal w VS Code: **Ctrl + `** (🪟) / **Cmd + `** (🍎). Środowisko `(.venv)` powinno aktywować się samo.
+5. Otwórz terminal w VS Code: **Ctrl + `** (💻) / **Cmd + `** (🍎). Środowisko `(.venv)` powinno aktywować się samo.
 6. Otwórz `hello.py` i uruchom go przyciskiem ▶ w prawym górnym rogu.
 
 > 💡 Zmień coś w `hello.py`, np. dodaj czwartego specjalistę, i uruchom ponownie.
@@ -263,7 +263,7 @@ To jak *Historia wersji* w Google Docs, tylko pod Twoją pełną kontrolą.
 
 Sprawdź, czy git jest zainstalowany: `git --version`.
 
-🪟 **Windows:** pobierz *Git for Windows* z https://git-scm.com/downloads/win i zainstaluj. Większość opcji zostaw domyślnych, ale:
+💻 **Windows:** pobierz *Git for Windows* z https://git-scm.com/downloads/win i zainstaluj. Większość opcji zostaw domyślnych, ale:
 - *Choosing the default editor used by Git* → **Use Visual Studio Code as Git's default editor**,
 - *Adjusting the name of the initial branch* → **Override… → `main`**.
 
@@ -285,7 +285,7 @@ git config --global core.editor "code --wait"
 
 Końce linii (Windows i macOS zapisują je inaczej, to ustawienie zapobiega bałaganowi):
 
-🪟 `git config --global core.autocrlf true`
+💻 `git config --global core.autocrlf true`
 🍎 `git config --global core.autocrlf input`
 
 Sprawdź: `git config --global --list`.

@@ -30,7 +30,7 @@ python -c "import cowsay; cowsay.cow('Muu! Działa!')"
 ```
 
 ### A3. Odtwarzanie środowiska
-W folderze `konsultacje` **usuń** folder `.venv` (🪟 `Remove-Item -Recurse .venv`, 🍎 `rm -r .venv`).
+W folderze `konsultacje` **usuń** folder `.venv` (💻 `Remove-Item -Recurse .venv`, 🍎 `rm -r .venv`).
 Utwórz środowisko od nowa, aktywuj je i odtwórz biblioteki z `requirements.txt`. Sprawdź, że `python hello.py` działa.
 
 ### A4. Rozbudowa skryptu + commity
