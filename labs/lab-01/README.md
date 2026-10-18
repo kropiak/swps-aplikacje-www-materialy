@@ -247,7 +247,7 @@ Dzięki temu plikowi każdy (np. Ty na innym komputerze) odtworzy środowisko je
 3. Otwórz projekt: w terminalu w folderze `konsultacje` wpisz `code .`
    (albo w VS Code: *File → Open Folder…*).
 4. Wskaż interpreter z naszego środowiska: **Ctrl/Cmd + Shift + P** → `Python: Select Interpreter` → wybierz pozycję z `.venv`.
-5. Otwórz terminal w VS Code: **Ctrl + `** (💻) / **Cmd + `** (🍎). Środowisko `(.venv)` powinno aktywować się samo.
+5. Otwórz terminal w VS Code: **`Ctrl +  (💻) / Cmd +  (🍎)`**. Środowisko `(.venv)` powinno aktywować się samo.
 6. Otwórz `hello.py` i uruchom go przyciskiem ▶ w prawym górnym rogu.
 
 > 💡 Zmień coś w `hello.py`, np. dodaj czwartego specjalistę, i uruchom ponownie.
