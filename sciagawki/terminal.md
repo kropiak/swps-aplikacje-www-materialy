@@ -3,7 +3,7 @@
 Na **Windows** używamy **PowerShell**: w VS Code to domyślny terminal, poza nim otwórz menu Start i wpisz „Terminal”.
 Na **macOS** używamy **zsh** (aplikacja *Terminal* albo terminal w VS Code).
 
-> 💡 W VS Code terminal otworzysz skrótem **Ctrl + `** (Windows) / **Cmd + `** (macOS) albo z menu *Terminal → New Terminal*.
+> 💡 W VS Code terminal otworzysz skrótem **`Ctrl + (Windows)/Cmd + (macOS)`** albo z menu *Terminal → New Terminal*.
 
 ## Podstawowe polecenia
 
