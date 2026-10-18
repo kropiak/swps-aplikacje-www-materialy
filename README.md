@@ -5,9 +5,9 @@ Prowadzący: mgr inż. Krzysztof Ropiak
 
 Tutaj znajdziesz instrukcje do laboratoriów, zadania, ściągawki i slajdy.
 Kod aplikacji, którą piszemy razem na zajęciach, jest w osobnym repozytorium:
-👉 [kropiak/swps_aplikacje_www_labs](https://github.com/kropiak/swps_aplikacje_www_labs)
+👉 [kropiak/swps-aplikacje-www-labs](https://github.com/kropiak/swps-aplikacje-www-labs)
 
-Slajdy w wersji online: 👉 [kropiak.github.io/swps_aplikacje_www_materialy](https://kropiak.github.io/swps_aplikacje_www_materialy/)
+Slajdy w wersji online: 👉 [kropiak.github.io/swps-aplikacje-www-materialy](https://kropiak.github.io/swps-aplikacje-www-materialy/)
 
 ---
 
@@ -24,8 +24,8 @@ Równolegle tworzysz **własny projekt** na wybrany temat. Po każdym labie doda
 
 | # | Forma | Temat | Instrukcja | Zadania | Slajdy | Kod po labie |
 |---|---|---|---|---|---|---|
-| 1 | online | Środowisko pracy: terminal, Python, venv, pip, VS Code, git | [instrukcja](labs/lab-01/README.md) | [zadania](labs/lab-01/zadania.md) | [slajdy](https://kropiak.github.io/swps_aplikacje_www_materialy/slides/lab-01.html) | [`lab-01`](https://github.com/kropiak/swps_aplikacje_www_labs/tree/lab-01) |
-| 2 | online | Git i GitHub: terminal i VS Code | [instrukcja](labs/lab-02/README.md) | [zadania](labs/lab-02/zadania.md) | [slajdy](https://kropiak.github.io/swps_aplikacje_www_materialy/slides/lab-02.html) | [`lab-02`](https://github.com/kropiak/swps_aplikacje_www_labs/tree/lab-02) |
+| 1 | online | Środowisko pracy: terminal, Python, venv, pip, VS Code, git | [instrukcja](labs/lab-01/README.md) | [zadania](labs/lab-01/zadania.md) | [slajdy](https://kropiak.github.io/swps-aplikacje-www-materialy/slides/lab-01.html) | [`lab-01`](https://github.com/kropiak/swps-aplikacje-www-labs/tree/lab-01) |
+| 2 | online | Git i GitHub: terminal i VS Code | [instrukcja](labs/lab-02/README.md) | [zadania](labs/lab-02/zadania.md) | [slajdy](https://kropiak.github.io/swps-aplikacje-www-materialy/slides/lab-02.html) | [`lab-02`](https://github.com/kropiak/swps-aplikacje-www-labs/tree/lab-02) |
 | 3 | online | Start z Django: projekt, aplikacja, modele, ORM, admin | wkrótce | | | `lab-03` |
 | 4 | online | Model domeny, panel admina, widoki, routing | wkrótce | | | `lab-04` |
 | 5 | online | HTML, CSS (Tailwind), szablony Django, formularz | wkrótce | | | `lab-05` |
@@ -43,7 +43,7 @@ Równolegle tworzysz **własny projekt** na wybrany temat. Po każdym labie doda
 
 ## Jak korzystać z repozytorium z kodem?
 
-Repozytorium [`swps_aplikacje_www_labs`](https://github.com/kropiak/swps_aplikacje_www_labs) ma osobną gałąź dla każdego labu.
+Repozytorium [`swps-aplikacje-www-labs`](https://github.com/kropiak/swps-aplikacje-www-labs) ma osobną gałąź dla każdego labu.
 Gałąź `lab-04` zawiera kod w takim stanie, w jakim był **na koniec** labu 4.
 
 Aplikację piszesz **we własnym repozytorium**. Repozytorium kursowe służy do porównania kodu albo skopiowania brakujących plików,
@@ -51,7 +51,7 @@ gdy coś nie działa lub opuściłeś zajęcia:
 
 - na GitHubie wybierz gałąź (przycisk z nazwą gałęzi nad listą plików) i przeglądaj pliki,
 - albo pobierz całą gałąź: **Code → Download ZIP**,
-- albo w terminalu: `git clone -b lab-04 https://github.com/kropiak/swps_aplikacje_www_labs.git lab-04`.
+- albo w terminalu: `git clone -b lab-04 https://github.com/kropiak/swps-aplikacje-www-labs.git lab-04`.
 
 > Masz problem z instalacją na swoim komputerze? W repozytorium z kodem jest konfiguracja **GitHub Codespaces**.
 > Kliknij **Code → Codespaces → Create codespace** i pracuj w przeglądarce. Instrukcja jest w README tamtego repozytorium.

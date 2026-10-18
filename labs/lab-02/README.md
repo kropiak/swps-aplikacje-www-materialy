@@ -3,8 +3,8 @@
 **Cel:** po tych zajęciach umiesz pracować z gałęziami, rozwiązać konflikt, wysłać projekt na GitHuba
 i przeprowadzić pełny cykl zmiany przez *pull request*, najpierw w terminalu, potem w VS Code.
 
-**Kod po labie:** gałąź [`lab-02`](https://github.com/kropiak/swps_aplikacje_www_labs/tree/lab-02)
-**Slajdy:** [lab-02](https://kropiak.github.io/swps_aplikacje_www_materialy/slides/lab-02.html)
+**Kod po labie:** gałąź [`lab-02`](https://github.com/kropiak/swps-aplikacje-www-labs/tree/lab-02)
+**Slajdy:** [lab-02](https://kropiak.github.io/swps-aplikacje-www-materialy/slides/lab-02.html)
 **Ściągawki:** [git](../../sciagawki/git.md) · [terminal](../../sciagawki/terminal.md)
 
 | Część | Czas | Temat |

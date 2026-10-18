@@ -3,8 +3,8 @@
 **Cel:** po tych zajęciach masz na swoim komputerze działający zestaw narzędzi programisty:
 terminal, Python ze środowiskiem wirtualnym, VS Code i git. Masz też pierwszy projekt z kilkoma commitami.
 
-**Kod po labie:** gałąź [`lab-01`](https://github.com/kropiak/swps_aplikacje_www_labs/tree/lab-01)
-**Slajdy:** [lab-01](https://kropiak.github.io/swps_aplikacje_www_materialy/slides/lab-01.html)
+**Kod po labie:** gałąź [`lab-01`](https://github.com/kropiak/swps-aplikacje-www-labs/tree/lab-01)
+**Slajdy:** [lab-01](https://kropiak.github.io/swps-aplikacje-www-materialy/slides/lab-01.html)
 **Ściągawki:** [terminal](../../sciagawki/terminal.md) · [venv i pip](../../sciagawki/venv-pip.md) · [git](../../sciagawki/git.md)
 
 | Część | Czas | Temat |
