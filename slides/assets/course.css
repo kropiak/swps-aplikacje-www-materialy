@@ -17,7 +17,8 @@
 
 /* dwie kolumny: Windows | macOS */
 .cols { display: flex; gap: 24px; align-items: flex-start; }
-.cols > div { flex: 1; min-width: 0; }
+.cols > * { flex: 1; min-width: 0; }
+.cols > pre { width: auto; margin: 0; }
 .os { display: inline-flex; align-items: center; gap: 6px; font-size: 0.6em; font-weight: bold; padding: 3px 11px; border-radius: 12px; margin-bottom: 6px; vertical-align: middle; }
 .os::before { content: ""; display: inline-block; width: 1em; height: 1em; background-repeat: no-repeat; background-position: center; background-size: contain; flex-shrink: 0; }
 .os.win { background: #e0efff; color: #0b4f9c; }
