@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 2: Git i GitHub | Projektowanie aplikacji webowych</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/white.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/github.css">
+  <link rel="stylesheet" href="assets/course.css">
+  <style>
+    svg.graph text { font-family: monospace; font-size: 18px; }
+    svg.graph .c { fill: #6a3fb5; }
+    svg.graph .b { fill: #2e9e4f; }
+    svg.graph .m { fill: #e39a12; }
+    svg.graph line { stroke: #999; stroke-width: 3; }
+  </style>
+</head>
+<body>
+<div class="course-footer">Projektowanie aplikacji webowych · Lab 2</div>
+<div class="reveal"><div class="slides">
+
+<section>
+  <h1>Lab 2</h1>
+  <h3>Git i GitHub</h3>
+  <p>gałęzie · konflikty · push/pull · pull request</p>
+  <p class="small">Projektowanie aplikacji webowych · SWPS 2026/27</p>
+</section>
+
+<section>
+  <h2>Gdzie jesteśmy?</h2>
+  <div class="card">✅ Lab 1: <code>konsultacje</code> = venv + <code>hello.py</code> + kilka commitów</div>
+  <div class="card fragment">🎯 Dziś: <strong>gałęzie</strong> → <strong>GitHub</strong> → <strong>VS Code + pull request</strong></div>
+  <div class="card fragment warn">Wszystkie polecenia wpisujemy w <strong>terminalu VS Code</strong> (łatwiejsze logowanie do GitHuba)</div>
+</section>
+
+<!-- ===================== CZĘŚĆ 1 ===================== -->
+<section>
+  <section data-background-color="#1f2a44">
+    <h2 style="color:white">Część 1</h2>
+    <h3 style="color:#cfc3ef">Gałęzie i konflikty</h3>
+  </section>
+
+  <section>
+    <h2>Jedno ustawienie na start</h2>
+<pre><code class="language-bash" data-trim>
+git config --global pull.rebase false
+</code></pre>
+    <p class="small">„Przy <code>git pull</code> łącz zmiany zwykłym scaleniem.”<br>Bez tego git potrafi przerwać <code>pull</code> komunikatem <em>divergent branches</em>.</p>
+  </section>
+
+  <section>
+    <h2>Czym jest gałąź?</h2>
+    <svg class="graph" width="900" height="220" viewBox="0 0 900 220">
+      <line x1="80" y1="60" x2="820" y2="60"/>
+      <circle class="c" cx="80" cy="60" r="18"/><text x="70" y="30">A</text>
+      <circle class="c" cx="220" cy="60" r="18"/><text x="210" y="30">B</text>
+      <circle class="c" cx="360" cy="60" r="18"/><text x="350" y="30">C</text>
+      <text x="830" y="66">main</text>
+      <g class="fragment" data-fragment-index="1">
+        <line x1="360" y1="60" x2="480" y2="160"/>
+        <line x1="480" y1="160" x2="620" y2="160"/>
+        <circle class="b" cx="480" cy="160" r="18"/><text x="470" y="200">D</text>
+        <circle class="b" cx="620" cy="160" r="18"/><text x="610" y="200">E</text>
+        <text x="650" y="200">plan-funkcji</text>
+      </g>
+      <g class="fragment" data-fragment-index="2">
+        <line x1="620" y1="160" x2="740" y2="60"/>
+        <circle class="m" cx="740" cy="60" r="22"/><text x="728" y="30">M</text>
+      </g>
+    </svg>
+    <p class="fragment" data-fragment-index="1">Osobna linia rozwoju: eksperymentuj bez ryzyka</p>
+    <p class="fragment" data-fragment-index="2"><strong>merge</strong>: scal, gdy działa · porzuć, gdy nie</p>
+  </section>
+
+  <section>
+    <h2>Pierwsza gałąź</h2>
+<pre><code class="language-bash" data-trim data-line-numbers="1|2-3|4|5-6|7">
+git switch -c plan-funkcji      # nowa gałąź
+# dopisz w README sekcję "Planowane funkcje"
+git commit -am "Dodaj listę planowanych funkcji"
+git switch main                 # sekcja znika?! 😮
+git merge plan-funkcji          # Fast-forward
+git log --oneline
+git branch -d plan-funkcji
+</code></pre>
+  </section>
+
+  <section>
+    <h2>Konflikt = ta sama linia, dwie wersje</h2>
+    <div class="cols">
+      <div class="card"><strong>nowy-tytul</strong><br><code># Konsultacje: rezerwacja wizyt</code></div>
+      <div class="card"><strong>main</strong><br><code># Konsultacje psychologiczne</code></div>
+    </div>
+<pre class="fragment"><code class="language-text" data-trim>
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+# Konsultacje psychologiczne
+=======
+# Konsultacje: rezerwacja wizyt
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; nowy-tytul
+</code></pre>
+    <p class="fragment small">Git nie zgaduje, tylko pyta Ciebie. Konflikt to po prostu <strong>tekst w pliku</strong>.</p>
+  </section>
+
+  <section>
+    <h2>Rozwiązanie konfliktu</h2>
+    <ol>
+      <li class="fragment">Edytuj plik: usuń znaczniki <code>&lt;&lt;&lt; === &gt;&gt;&gt;</code>, zostaw właściwą treść</li>
+      <li class="fragment"><code>git add README.md</code> („rozwiązane”)</li>
+      <li class="fragment"><code>git commit -m "Scal gałąź nowy-tytul"</code></li>
+      <li class="fragment"><code>git log --oneline --graph</code> 🌳</li>
+    </ol>
+    <div class="card fragment small">😱 Panika? <code>git merge --abort</code> cofa do stanu sprzed scalania</div>
+  </section>
+</section>
+
+<!-- ===================== CZĘŚĆ 2 ===================== -->
+<section>
+  <section data-background-color="#1f2a44">
+    <h2 style="color:white">Część 2</h2>
+    <h3 style="color:#cfc3ef">GitHub</h3>
+  </section>
+
+  <section>
+    <h2>Lokalnie i zdalnie</h2>
+    <div class="cols" style="align-items:center">
+      <div class="card">💻 <strong>Twój komputer</strong><br>repozytorium lokalne</div>
+      <div><p><code>git push</code> →</p><p>← <code>git pull</code></p><p>← <code>git clone</code></p></div>
+      <div class="card">☁️ <strong>GitHub</strong><br>repozytorium zdalne <code>origin</code></div>
+    </div>
+    <p class="fragment">kopia zapasowa · praca z wielu komputerów · współpraca · portfolio</p>
+  </section>
+
+  <section>
+    <h2>Nowe repozytorium na GitHubie</h2>
+    <ol>
+      <li><strong>+</strong> → New repository → <code>konsultacje</code></li>
+      <li>Public (lub Private + dostęp dla <code>kropiak</code>)</li>
+      <li class="fragment">⚠️ <strong>BEZ</strong> README, .gitignore, license: repo musi być <strong>puste</strong></li>
+    </ol>
+<pre class="fragment"><code class="language-bash" data-trim>
+git remote add origin https://github.com/twoj-login/konsultacje.git
+git remote -v
+git push -u origin main
+</code></pre>
+  </section>
+
+  <section>
+    <h2>Logowanie przy pierwszym push</h2>
+    <div class="cols">
+      <div><span class="os win">🪟 Windows</span><p class="small">Git Credential Manager<br>→ <strong>Sign in with your browser</strong></p></div>
+      <div><span class="os mac">🍎 macOS</span><p class="small">terminal VS Code<br>→ <em>„GitHub wants to sign in”</em> → <strong>Allow</strong></p></div>
+    </div>
+    <div class="card warn fragment small">Terminal pyta o <strong>hasło</strong>? GitHub go nie przyjmie. Ctrl + C → push z VS Code.</div>
+  </section>
+
+  <section>
+    <h2>Markdown w 60 sekund</h2>
+    <div class="cols">
+<pre><code class="language-markdown" data-trim>
+## Technologie
+
+- [Python](https://python.org): język
+- **Django** (od labu 3)
+- `git` i *GitHub*
+</code></pre>
+      <div class="card" style="font-size:0.7em">
+        <h4 style="margin:0">Technologie</h4>
+        <ul><li><a href="#">Python</a>: język</li><li><strong>Django</strong> (od labu 3)</li><li><code>git</code> i <em>GitHub</em></li></ul>
+      </div>
+    </div>
+    <p class="fragment small">Ćwiczenie: edytuj README <strong>na GitHubie</strong> (✏️) → commit → lokalnie <code>git pull</code></p>
+  </section>
+
+  <section>
+    <h2>Złota zasada</h2>
+    <div class="card">🌅 zaczynasz pracę → <code>git pull</code></div>
+    <div class="card">🌙 kończysz pracę → <code>git commit</code> + <code>git push</code></div>
+    <p class="fragment">Nowy komputer / pracownia? → <code>git clone</code> + nowy <code>.venv</code> + <code>pip install -r requirements.txt</code></p>
+  </section>
+</section>
+
+<!-- ===================== CZĘŚĆ 3 ===================== -->
+<section>
+  <section data-background-color="#1f2a44">
+    <h2 style="color:white">Część 3</h2>
+    <h3 style="color:#cfc3ef">VS Code i pull request</h3>
+  </section>
+
+  <section>
+    <h2>Panel Source Control</h2>
+    <table>
+      <tr><th>VS Code</th><th>Terminal</th></tr>
+      <tr><td>lista Changes</td><td><code>git status</code></td></tr>
+      <tr><td>klik w plik</td><td><code>git diff</code></td></tr>
+      <tr><td><strong>+</strong></td><td><code>git add</code></td></tr>
+      <tr><td>Commit</td><td><code>git commit</code></td></tr>
+      <tr><td>Sync Changes</td><td><code>git pull</code> + <code>git push</code></td></tr>
+      <tr><td>gałąź na pasku stanu</td><td><code>git switch</code></td></tr>
+      <tr><td>Graph</td><td><code>git log --graph</code></td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Pull request</h2>
+    <p>„Przejrzyj moje zmiany z gałęzi X i scal je z <code>main</code>.”</p>
+    <ol>
+      <li class="fragment">VS Code: nowa gałąź <code>licznik-specjalistow</code> → zmiana → commit → <strong>Publish Branch</strong></li>
+      <li class="fragment">GitHub: <strong>Compare &amp; pull request</strong> → opis → Create</li>
+      <li class="fragment"><strong>Files changed</strong>: przegląd kodu, komentarze</li>
+      <li class="fragment"><strong>Merge</strong> → Delete branch</li>
+      <li class="fragment">VS Code: <code>main</code> → <strong>Sync</strong></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Konflikt z GitHubem</h2>
+    <div class="cols">
+      <div class="card">☁️ GitHub:<br><code>- przypomnienia e-mail o wizycie</code></div>
+      <div class="card">💻 lokalnie (bez pull!):<br><code>- panel administratora</code></div>
+    </div>
+    <p class="fragment">Sync → konflikt → <strong>Accept Both Changes</strong> / <strong>Merge Editor</strong></p>
+    <p class="fragment">→ <strong>+</strong> → Commit → Sync ✅</p>
+  </section>
+</section>
+
+<section>
+  <h2>Podsumowanie</h2>
+  <ul>
+    <li>✅ gałęzie: <code>switch -c</code>, <code>merge</code>, <code>branch -d</code></li>
+    <li>✅ konflikty: ręcznie i w Merge Editorze</li>
+    <li>✅ GitHub: <code>push</code>, <code>pull</code>, <code>clone</code>, Markdown</li>
+    <li>✅ pull request</li>
+  </ul>
+  <div class="card">📚 Zadania: <code>labs/lab-02/zadania.md</code><br>🎯 Część B: repo projektu na GitHubie + <strong>zgłoszenie tematu</strong></div>
+</section>
+
+</div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/highlight.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: 'c/t',
+    width: 1280,
+    height: 760,
+    plugins: [RevealHighlight, RevealNotes]
+  });
+</script>
+</body>
+</html>

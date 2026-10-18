@@ -25,7 +25,7 @@ Równolegle tworzysz **własny projekt** na wybrany temat. Po każdym labie doda
 | # | Forma | Temat | Instrukcja | Zadania | Slajdy | Kod po labie |
 |---|---|---|---|---|---|---|
 | 1 | online | Środowisko pracy: terminal, Python, venv, pip, VS Code, git | [instrukcja](labs/lab-01/README.md) | [zadania](labs/lab-01/zadania.md) | [slajdy](https://kropiak.github.io/swps_aplikacje_www_materialy/slides/lab-01.html) | [`lab-01`](https://github.com/kropiak/swps_aplikacje_www_labs/tree/lab-01) |
-| 2 | online | Git i GitHub: terminal i VS Code | wkrótce | | | `lab-02` |
+| 2 | online | Git i GitHub: terminal i VS Code | [instrukcja](labs/lab-02/README.md) | [zadania](labs/lab-02/zadania.md) | [slajdy](https://kropiak.github.io/swps_aplikacje_www_materialy/slides/lab-02.html) | [`lab-02`](https://github.com/kropiak/swps_aplikacje_www_labs/tree/lab-02) |
 | 3 | online | Start z Django: projekt, aplikacja, modele, ORM, admin | wkrótce | | | `lab-03` |
 | 4 | online | Model domeny, panel admina, widoki, routing | wkrótce | | | `lab-04` |
 | 5 | online | HTML, CSS (Tailwind), szablony Django, formularz | wkrótce | | | `lab-05` |

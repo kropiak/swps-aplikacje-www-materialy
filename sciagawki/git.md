@@ -17,6 +17,7 @@ git config --global user.name "Imię Nazwisko"
 git config --global user.email "twoj@email.pl"     # ten sam e-mail co na GitHubie
 git config --global init.defaultBranch main
 git config --global core.editor "code --wait"      # VS Code jako edytor gita
+git config --global pull.rebase false              # git pull = zwykłe scalanie (merge)
 # końce linii:
 git config --global core.autocrlf true             # Windows
 git config --global core.autocrlf input            # macOS
