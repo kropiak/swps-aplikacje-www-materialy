@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 3: Start z Django | Projektowanie aplikacji webowych</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/white.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/github.css">
+  <link rel="stylesheet" href="assets/course.css">
+</head>
+<body>
+<div class="course-footer">Projektowanie aplikacji webowych · Lab 3</div>
+<div class="reveal"><div class="slides">
+
+<section>
+  <h1>Lab 3</h1>
+  <h3>Start z Django 6</h3>
+  <p>projekt · aplikacja · modele · migracje · ORM · panel admina</p>
+  <p class="small">Projektowanie aplikacji webowych · SWPS 2026/27</p>
+</section>
+
+<section>
+  <h2>Gdzie jesteśmy?</h2>
+  <div class="card">✅ Lab 1–2: <code>konsultacje</code> = <code>.venv</code> + <code>hello.py</code> + repo na GitHubie</div>
+  <div class="card fragment">🎯 Dziś: zamieniamy skrypt konsolowy w <strong>aplikację webową z bazą danych</strong></div>
+  <div class="card fragment warn">Zanim zaczniesz: upewnij się, że w terminalu VS Code widzisz <strong><code>(.venv)</code></strong>!</div>
+</section>
+
+<!-- ===================== CZĘŚĆ 1 ===================== -->
+<section>
+  <section data-background-color="#1f2a44">
+    <h2 style="color:white">Część 1</h2>
+    <h3 style="color:#cfc3ef">Projekt <code>config</code>, aplikacja <code>booking</code> i serwer</h3>
+  </section>
+
+  <section>
+    <h2>Jak działa aplikacja webowa?</h2>
+    <div class="cols" style="align-items:center">
+      <div class="card">🌐 <strong>Przeglądarka</strong><br><span class="small">http://127.0.0.1:8000/</span></div>
+      <div><p><code>żądanie HTTP</code> →</p><p>← <code>HTML / JSON</code></p></div>
+      <div class="card">🐍 <strong>Django 6</strong><br><span class="small">widoki · modele · admin</span></div>
+      <div><p><code>ORM</code> ↔</p></div>
+      <div class="card">🗄️ <strong>SQLite</strong><br><span class="small"><code>db.sqlite3</code></span></div>
+    </div>
+    <p class="fragment">Django = <em>„batteries included”</em>: serwer, ORM, migracje, szablony, logowanie i panel <code>/admin/</code> w pakiecie</p>
+  </section>
+
+  <section>
+    <h2>Instalacja Django 6</h2>
+    <div class="cols">
+      <div>
+        <span class="os win">Windows</span>
+<pre><code class="language-powershell" data-trim>
+.venv\Scripts\Activate.ps1
+</code></pre>
+      </div>
+      <div>
+        <span class="os mac">macOS</span>
+<pre><code class="language-bash" data-trim>
+source .venv/bin/activate
+</code></pre>
+      </div>
+    </div>
+<pre class="fragment"><code class="language-bash" data-trim>
+git pull
+pip install django
+python -m django --version      # 6.x
+pip freeze > requirements.txt
+</code></pre>
+  </section>
+
+  <section>
+    <h2>Projekt a aplikacja</h2>
+    <div class="cols">
+      <div class="card">
+        <strong>Projekt (<code>config</code>)</strong><br>
+        cała witryna i jej ustawienia:<br>
+        <code>settings.py</code>, główne <code>urls.py</code>
+      </div>
+      <div class="card">
+        <strong>Aplikacja (<code>booking</code>)</strong><br>
+        konkretny moduł tematyczny:<br>
+        rezerwacja konsultacji
+      </div>
+    </div>
+<pre class="fragment"><code class="language-bash" data-trim>
+django-admin startproject config .
+python manage.py startapp booking
+</code></pre>
+    <div class="card warn fragment small">⚠️ <strong>Kropka <code>.</code> na końcu</strong> <code>startproject config .</code> tworzy <code>manage.py</code> w bieżącym folderze (bez zagnieżdżonego <code>config/config/</code>)!</div>
+  </section>
+
+  <section>
+    <h2>Pierwszy start serwera</h2>
+<pre><code class="language-bash" data-trim>
+python manage.py runserver
+</code></pre>
+    <div class="card check fragment">🚀 Otwórz <strong>http://127.0.0.1:8000/</strong> — rakieta startowa Django!</div>
+    <p class="fragment small">Zatrzymanie serwera: <strong>Ctrl + C</strong> · Drugi terminal w VS Code: przycisk <strong><code>+</code></strong></p>
+  </section>
+
+  <section>
+    <h2>Konfiguracja <code>config/settings.py</code></h2>
+<pre><code class="language-python" data-trim data-line-numbers="1-9|11-13">
+INSTALLED_APPS = [
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "booking",
+]
+
+LANGUAGE_CODE = "pl"
+TIME_ZONE = "Europe/Warsaw"
+</code></pre>
+    <p class="fragment small">Po zapisaniu i odświeżeniu <code>http://127.0.0.1:8000/</code> rakieta mówi po polsku 🇵🇱</p>
+  </section>
+</section>
+
+<!-- ===================== CZĘŚĆ 2 ===================== -->
+<section>
+  <section data-background-color="#1f2a44">
+    <h2 style="color:white">Część 2</h2>
+    <h3 style="color:#cfc3ef">Modele, migracje i ORM w <code>shell</code></h3>
+  </section>
+
+  <section>
+    <h2>Od listy w <code>hello.py</code> do modeli</h2>
+    <p class="small">Jeden specjalista może mieć kilka specjalizacji, a jedna specjalizacja wielu specjalistów (<strong>wiele-do-wielu</strong>):</p>
+    <div class="cols" style="align-items:center">
+      <div class="card">
+        <strong><code>Specialization</code></strong>
+        <hr>
+        <code>id</code> (auto)<br>
+        <code>name</code> (unikalna nazwa)
+      </div>
+      <div><p><strong>M : N</strong><br><span class="small"><code>ManyToManyField</code></span></p></div>
+      <div class="card">
+        <strong><code>Specialist</code></strong>
+        <hr>
+        <code>id</code> (auto)<br>
+        <code>first_name</code>, <code>last_name</code><br>
+        <code>bio</code>, <code>mode</code>, <code>price</code><br>
+        <code>specializations</code>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><code>booking/models.py</code></h2>
+<pre><code class="language-python" data-trim data-line-numbers="1-8|11-31">
+from django.db import models
+
+
+class Specialization(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    def __str__(self) -> str:
+        return self.name
+
+
+class Specialist(models.Model):
+    MODE_CHOICES = [
+        ("online", "Online"),
+        ("stacjonarnie", "Stacjonarnie"),
+        ("hybrydowo", "Hybrydowo"),
+    ]
+
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    bio = models.TextField(blank=True)
+    mode = models.CharField(max_length=20, choices=MODE_CHOICES, default="online")
+    price = models.PositiveIntegerField(default=180)
+    specializations = models.ManyToManyField(
+        Specialization, related_name="specialists", blank=True
+    )
+
+    def __str__(self) -> str:
+        return f"{self.first_name} {self.last_name}"
+</code></pre>
+  </section>
+
+  <section>
+    <h2>Cykl migracji: 2 kroki</h2>
+    <div class="cols">
+      <div class="card">
+        <strong>1. <code>makemigrations</code></strong><br>
+        porównuje <code>models.py</code> i tworzy przepis w <code>booking/migrations/0001_initial.py</code>
+      </div>
+      <div class="card">
+        <strong>2. <code>migrate</code></strong><br>
+        wykonuje przepis na bazie danych (tworzy tabele w <code>db.sqlite3</code>)
+      </div>
+    </div>
+<pre class="fragment"><code class="language-bash" data-trim>
+python manage.py makemigrations
+python manage.py sqlmigrate booking 0001   # podgląd wygenerowanego SQL
+python manage.py migrate
+</code></pre>
+    <div class="card warn fragment small">
+      📌 Pliki <code>migrations/*.py</code> <strong>commitujemy do gita</strong> · Plik <code>db.sqlite3</code> jest w <code>.gitignore</code> (baza lokalna)
+    </div>
+  </section>
+
+  <section>
+    <h2>ORM w <code>python manage.py shell</code></h2>
+    <p class="small">W <strong>Django 6</strong> modele z <code>booking</code> importują się w <code>shell</code> automatycznie!</p>
+<pre><code class="language-python" data-trim data-line-numbers="1-3|5-11|13-19">
+cbt = Specialization.objects.create(name="Terapia poznawczo-behawioralna")
+dzieci = Specialization.objects.create(name="Psychologia dziecięca")
+pary = Specialization.objects.create(name="Terapia par")
+
+anna = Specialist.objects.create(
+    first_name="Anna", last_name="Nowak", mode="online", price=200
+)
+anna.specializations.add(cbt, pary)
+
+Specialist.objects.all()
+Specialist.objects.filter(mode="online")
+
+Specialist.objects.filter(price__lte=200)
+Specialist.objects.order_by("price")
+anna.specializations.all()
+pary.specialists.all()          # dzięki related_name="specialists"
+</code></pre>
+  </section>
+</section>
+
+<!-- ===================== CZĘŚĆ 3 ===================== -->
+<section>
+  <section data-background-color="#1f2a44">
+    <h2 style="color:white">Część 3</h2>
+    <h3 style="color:#cfc3ef">Panel administracyjny <code>/admin/</code></h3>
+  </section>
+
+  <section>
+    <h2>Konto administratora</h2>
+<pre><code class="language-bash" data-trim>
+python manage.py createsuperuser
+</code></pre>
+    <div class="card warn fragment">
+      🔒 Podczas wpisywania hasła w terminalu <strong>nie pojawiają się żadne znaki ani gwiazdki</strong>.<br>
+      Wpisz hasło „w ciemno” i naciśnij Enter.
+    </div>
+    <p class="fragment">Uruchom <code>python manage.py runserver</code> → zaloguj się na <strong>http://127.0.0.1:8000/admin/</strong></p>
+  </section>
+
+  <section>
+    <h2>Rejestracja modeli w <code>booking/admin.py</code></h2>
+<pre><code class="language-python" data-trim>
+from django.contrib import admin
+
+from .models import Specialist, Specialization
+
+admin.site.register(Specialization)
+admin.site.register(Specialist)
+</code></pre>
+    <div class="card check fragment">
+      Odśwież <code>/admin/</code> → w sekcji <strong>BOOKING</strong> widzisz swoich specjalistów i specjalizacje z <code>shell</code>!
+    </div>
+    <p class="fragment small">Dodaj w przeglądarce 4. specjalizację i 4. specjalistę (Ewę Lis), a na koniec zrób <code>git commit</code> i <code>git push</code>.</p>
+  </section>
+</section>
+
+<section>
+  <h2>Podsumowanie Lab 3</h2>
+  <ul>
+    <li>✅ projekt <code>config</code> + aplikacja <code>booking</code> w Django 6</li>
+    <li>✅ modele <code>Specialization</code> i <code>Specialist</code> (relacja wiele-do-wielu)</li>
+    <li>✅ migracje: <code>makemigrations</code> → <code>migrate</code></li>
+    <li>✅ zapytania ORM w <code>python manage.py shell</code></li>
+    <li>✅ panel <code>/admin/</code> i konto <code>superuser</code></li>
+  </ul>
+  <div class="card">📚 Zadania: <code>labs/lab-03/zadania.md</code><br>🎯 Część B: projekt Django + 2 pierwsze modele i panel admina we <strong>własnym projekcie</strong> (przez PR)</div>
+</section>
+
+</div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/highlight.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    slideNumber: 'c/t',
+    width: 1280,
+    height: 760,
+    plugins: [RevealHighlight, RevealNotes]
+  });
+</script>
+</body>
+</html>
